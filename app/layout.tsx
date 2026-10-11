@@ -1,48 +1,92 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Space_Grotesk, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+import { SITE_URL, getPersonSchema, getWebSiteSchema } from "@/lib/seo";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-body",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Youssef Salah Elbltagi | Software Tester & QA Engineer",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Youssef Elbltagi | Frontend Developer & QA Engineer",
+    template: "%s | Youssef Elbltagi",
+  },
   description:
-    "Freelance Software Tester specializing in manual testing, test case design, bug reporting, and quality assurance. Software Testing Trainee at DEPI.",
+    "Explore the portfolio of Youssef Salah Elbltagi, a Frontend Developer and Software QA Tester specializing in React, Next.js, responsive web development, manual testing, and software quality.",
   keywords: [
-    "Software Tester",
-    "QA Engineer",
-    "Quality Assurance",
+    "Frontend Developer",
+    "Software QA Tester",
+    "React Developer",
+    "Next.js Developer",
+    "JavaScript Developer",
     "Manual Testing",
+    "Functional Testing",
+    "Regression Testing",
+    "Exploratory Testing",
     "Test Case Design",
-    "Equivalence Partitioning",
     "Boundary Value Analysis",
+    "Equivalence Partitioning",
     "Bug Reporting",
-    "DEPI",
+    "Postman API Testing",
+    "DEPI Software Testing Trainee",
     "Youssef Salah Elbltagi",
-    "Freelance QA",
-    "REST API Testing",
-    "Mobile Testing",
+    "Website QA Testing Services",
   ],
-  authors: [{ name: "Youssef Salah Elbltagi" }],
+  authors: [{ name: "Youssef Salah Elbltagi", url: `${SITE_URL}/` }],
+  creator: "Youssef Salah Elbltagi",
+  publisher: "Youssef Salah Elbltagi",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Youssef Salah Elbltagi | Software Tester & QA Engineer",
+    title: "Youssef Elbltagi | Frontend Developer & QA Engineer",
     description:
-      "Software Tester who finds bugs before your users do. Manual Testing, Test Case Design & Bug Reporting Specialist.",
+      "I build digital experiences, test their limits, and make them better. React, Next.js, and structured manual quality assurance case studies.",
     type: "website",
+    url: `${SITE_URL}/`,
+    siteName: "Youssef Salah Elbltagi Portfolio",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Youssef Salah Elbltagi | Software Tester & QA Engineer",
-    description: "Freelance QA Engineer and Software Tester.",
+    title: "Youssef Elbltagi | Frontend Developer & QA Engineer",
+    description:
+      "I build digital experiences, test their limits, and make them better. React, Next.js, and manual QA case studies.",
+    creator: "@elbltagi",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    apple: "/icon.svg",
   },
 };
 
@@ -51,9 +95,33 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const personJsonLd = getPersonSchema();
+  const websiteJsonLd = getWebSiteSchema();
+
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}>
-      <body className="min-h-screen bg-[#0B0F14] text-[#F8FAFC] antialiased selection:bg-[#00D4FF] selection:text-[#0B0F14]">
+    <html
+      lang="en"
+      className={`${spaceGrotesk.variable} ${inter.variable} ${ibmPlexMono.variable} scroll-smooth`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personJsonLd),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd),
+          }}
+        />
+      </head>
+      <body
+        className="min-h-screen bg-[#F4F1EA] text-[#181818] font-sans antialiased selection:bg-[#FF5A36] selection:text-[#F4F1EA]"
+        suppressHydrationWarning
+      >
         {children}
       </body>
     </html>

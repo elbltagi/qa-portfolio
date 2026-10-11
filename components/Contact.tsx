@@ -40,7 +40,7 @@ export default function Contact() {
   };
 
   const copyEmail = () => {
-    navigator.clipboard.writeText("youssef.elbltagi.qa@gmail.com");
+    navigator.clipboard.writeText("youssefsalah469@gmail.com");
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 3000);
   };
@@ -91,7 +91,7 @@ export default function Contact() {
                 <span className="text-xs font-mono text-[#94A3B8] block">Primary Email:</span>
                 <div className="flex items-center justify-between gap-2">
                   <span className="text-xs font-mono text-white select-all truncate">
-                    youssef.elbltagi.qa@gmail.com
+                    youssefsalah469@gmail.com
                   </span>
                   <button
                     onClick={copyEmail}
@@ -108,7 +108,7 @@ export default function Contact() {
                 <span className="text-xs font-mono text-[#94A3B8] block">Professional Profiles:</span>
                 
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/youssef-elbltagi/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-3.5 bg-[#0B0F14] hover:bg-[#16202C] rounded-xl border border-white/5 hover:border-[#00D4FF]/40 transition-all text-xs font-semibold text-white group"

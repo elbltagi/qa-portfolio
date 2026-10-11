@@ -58,7 +58,7 @@ export default function Footer() {
               </h4>
               <div className="flex items-center space-x-3">
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/youssef-elbltagi/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 rounded-lg bg-[#111820] border border-white/10 hover:border-[#00D4FF] hover:text-[#00D4FF] flex items-center justify-center text-[#94A3B8] transition-colors"
