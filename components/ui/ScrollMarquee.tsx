@@ -21,7 +21,7 @@ export default function ScrollMarquee({
   const themeClasses = {
     light: "bg-[#E8E5DD] text-[#181818] border-y border-[#D5D0C8]",
     dark: "bg-[#111215] text-[#F4F1EA] border-y border-white/10",
-    orange: "bg-[#FF5A36] text-[#F4F1EA] border-y border-[#181818]",
+    orange: "bg-[#FF5A36] text-[#181818] border-y border-[#181818]",
   };
 
   return (
@@ -34,7 +34,11 @@ export default function ScrollMarquee({
         {items.map((item, idx) => (
           <span key={idx} className="flex items-center gap-12">
             <span>{item}</span>
-            <span className="w-3 h-3 rounded-full bg-[#FF5A36] shrink-0"></span>
+            <span
+              className={`w-3 h-3 rounded-full shrink-0 ${
+                theme === "orange" ? "bg-[#181818]" : "bg-[#FF5A36]"
+              }`}
+            ></span>
           </span>
         ))}
       </div>

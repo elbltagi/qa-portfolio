@@ -60,18 +60,18 @@ export default function Hero() {
               className="space-y-1 font-display font-black text-hero-giant text-[#181818] tracking-tighter"
             >
               <div className="overflow-hidden">
-                <span className="block hover:text-[#FF5A36] transition-colors duration-200 cursor-default">
+                <span className="block hover:text-[#C43616] transition-colors duration-200 cursor-default">
                   I BUILD IT.
                 </span>
               </div>
               <div className="overflow-hidden flex items-center gap-3">
-                <span className="block text-[#FF5A36] hover:text-[#181818] transition-colors duration-200 cursor-default">
+                <span className="block text-[#D43D1A] hover:text-[#181818] transition-colors duration-200 cursor-default">
                   I BREAK IT.
                 </span>
                 <span className="hidden sm:inline-block w-8 sm:w-16 h-2 bg-[#181818]"></span>
               </div>
               <div className="overflow-hidden">
-                <span className="block hover:text-[#FF5A36] transition-colors duration-200 cursor-default">
+                <span className="block hover:text-[#C43616] transition-colors duration-200 cursor-default">
                   I MAKE IT BETTER.
                 </span>
               </div>
@@ -126,23 +126,27 @@ export default function Hero() {
                 </div>
 
                 {/* Mode Switcher */}
-                <div className="flex items-center bg-[#181818] p-1 border border-white/10 font-mono text-xs">
+                <div role="group" aria-label="Interactive preview mode" className="flex items-center bg-[#181818] p-1 border border-white/10 font-mono text-xs">
                   <button
+                    type="button"
                     onClick={() => setActiveMode("build")}
-                    className={`px-3 py-1 font-bold transition-all ${
+                    aria-pressed={activeMode === "build"}
+                    className={`px-3 py-1 font-bold transition-all cursor-pointer ${
                       activeMode === "build"
                         ? "bg-[#C6F36B] text-[#181818]"
-                        : "text-white/60 hover:text-white"
+                        : "text-white/80 hover:text-white"
                     }`}
                   >
                     BUILD MODE
                   </button>
                   <button
+                    type="button"
                     onClick={() => setActiveMode("break")}
-                    className={`px-3 py-1 font-bold transition-all ${
+                    aria-pressed={activeMode === "break"}
+                    className={`px-3 py-1 font-bold transition-all cursor-pointer ${
                       activeMode === "break"
-                        ? "bg-[#FF5A36] text-[#F4F1EA]"
-                        : "text-white/60 hover:text-white"
+                        ? "bg-[#FF5A36] text-[#181818]"
+                        : "text-white/80 hover:text-white"
                     }`}
                   >
                     BREAK MODE

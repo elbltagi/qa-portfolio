@@ -98,7 +98,7 @@ export default async function CaseStudyDetailPage({
               <span
                 className={`px-2.5 py-0.5 font-bold uppercase ${
                   project.discipline === "TESTED BY ME"
-                    ? "bg-[#FF5A36] text-[#F4F1EA]"
+                    ? "bg-[#FF5A36] text-[#181818]"
                     : "bg-[#C6F36B] text-[#181818]"
                 }`}
               >
@@ -114,7 +114,7 @@ export default async function CaseStudyDetailPage({
               {project.title}
             </h1>
 
-            <p className="font-mono text-base sm:text-lg text-[#FF5A36] font-bold">
+            <p className="font-mono text-base sm:text-lg text-[#C43616] font-bold">
               {project.subtitle}
             </p>
 
@@ -140,7 +140,7 @@ export default async function CaseStudyDetailPage({
           {/* The Challenge & Solution */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white p-6 sm:p-8 border-2 border-[#181818] space-y-3">
-              <div className="flex items-center gap-2 font-mono text-xs uppercase font-bold text-[#FF5A36]">
+              <div className="flex items-center gap-2 font-mono text-xs uppercase font-bold text-[#C43616]">
                 <AlertTriangle className="w-4 h-4" />
                 <span>The Engineering Challenge</span>
               </div>
@@ -169,8 +169,8 @@ export default async function CaseStudyDetailPage({
                 </h3>
                 <ul className="space-y-2.5">
                   {project.responsibilities.map((res, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#5A5752] leading-relaxed">
-                      <span className="font-mono text-[#FF5A36] font-bold">0{i + 1}.</span>
+                     <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#5A5752] leading-relaxed">
+                      <span className="font-mono text-[#C43616] font-bold">0{i + 1}.</span>
                       <span className="text-[#181818]">{res}</span>
                     </li>
                   ))}
@@ -184,7 +184,7 @@ export default async function CaseStudyDetailPage({
                 <div className="space-y-2.5">
                   {project.deliverables.map((del, i) => (
                     <div key={i} className="p-3 bg-[#F4F1EA] border border-[#D5D0C8] font-mono text-xs text-[#181818] flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#FF5A36] shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-[#C43616] shrink-0" />
                       <span>{del}</span>
                     </div>
                   ))}
@@ -215,7 +215,7 @@ export default async function CaseStudyDetailPage({
             <div className="space-y-4 bg-white p-6 sm:p-8 border-2 border-[#181818]">
               <div className="flex items-center justify-between border-b border-[#D5D0C8] pb-3">
                 <h3 className="font-mono text-xs uppercase font-bold text-[#181818] flex items-center gap-2">
-                  <Terminal className="w-4 h-4 text-[#FF5A36]" />
+                  <Terminal className="w-4 h-4 text-[#C43616]" />
                   Executed Test Scenarios Matrix
                 </h3>
                 <span className="font-mono text-xs text-emerald-700 font-bold">
@@ -237,7 +237,7 @@ export default async function CaseStudyDetailPage({
                   <tbody className="divide-y divide-[#D5D0C8]">
                     {project.sampleTestCases.map((tc) => (
                       <tr key={tc.id} className="hover:bg-[#F4F1EA]">
-                        <td className="py-3 px-3 font-bold text-[#FF5A36]">{tc.id}</td>
+                        <td className="py-3 px-3 font-bold text-[#C43616]">{tc.id}</td>
                         <td className="py-3 px-3 text-[#181818] font-sans font-medium">{tc.scenario}</td>
                         <td className="py-3 px-3 text-[#5A5752]">{tc.technique}</td>
                         <td className="py-3 px-3 text-[#5A5752]">{tc.expected}</td>
@@ -266,7 +266,7 @@ export default async function CaseStudyDetailPage({
                     Reporter: Youssef Salah Elbltagi • Software Testing Trainee @ DEPI
                   </span>
                 </div>
-                <span className="px-3 py-1 text-xs font-bold uppercase bg-[#FF5A36] text-[#F4F1EA]">
+                <span className="px-3 py-1 text-xs font-bold uppercase bg-[#FF5A36] text-[#181818]">
                   Severity: {project.sampleBugReport.severity}
                 </span>
               </div>
@@ -313,7 +313,7 @@ export default async function CaseStudyDetailPage({
 
             <Link
               href={`/work/${nextProject.slug}`}
-              className="px-6 py-3 bg-[#181818] text-white hover:bg-[#FF5A36] font-bold uppercase transition-colors flex items-center gap-2"
+              className="px-6 py-3 bg-[#181818] text-white hover:bg-[#FF5A36] hover:text-[#181818] font-bold uppercase transition-colors flex items-center gap-2"
             >
               <span>Explore Next Project</span>
               <ArrowUpRight className="w-4 h-4" />

@@ -34,7 +34,7 @@ export default function WorkArchiveClient({ initialProjects }: WorkArchiveClient
       {/* Header */}
       <div className="border-b-2 border-[#181818] pb-10 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div className="space-y-3">
-          <span className="font-mono text-xs uppercase tracking-widest text-[#FF5A36] font-bold">
+          <span className="font-mono text-xs uppercase tracking-widest text-[#C43616] font-bold">
             [ ARCHIVE // 04 PROJECTS ]
           </span>
           <h1 className="font-display font-black text-editorial-title uppercase tracking-tight text-[#181818]">
@@ -46,33 +46,39 @@ export default function WorkArchiveClient({ initialProjects }: WorkArchiveClient
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex items-center gap-2 p-1 bg-[#E8E5DD] border border-[#D5D0C8] font-mono text-xs">
+        <div role="group" aria-label="Filter case studies by discipline" className="flex items-center gap-2 p-1 bg-[#E8E5DD] border border-[#D5D0C8] font-mono text-xs">
           <button
+            type="button"
             onClick={() => setActiveFilter("ALL")}
+            aria-pressed={activeFilter === "ALL"}
             className={`px-3 py-1.5 font-bold transition-colors cursor-pointer ${
               activeFilter === "ALL"
                 ? "bg-[#181818] text-[#F4F1EA]"
-                : "text-[#181818] hover:text-[#FF5A36]"
+                : "text-[#181818] hover:text-[#C43616]"
             }`}
           >
             ALL ({initialProjects.length})
           </button>
           <button
+            type="button"
             onClick={() => setActiveFilter("QA")}
+            aria-pressed={activeFilter === "QA"}
             className={`px-3 py-1.5 font-bold transition-colors cursor-pointer ${
               activeFilter === "QA"
-                ? "bg-[#FF5A36] text-[#F4F1EA]"
-                : "text-[#181818] hover:text-[#FF5A36]"
+                ? "bg-[#FF5A36] text-[#181818]"
+                : "text-[#181818] hover:text-[#C43616]"
             }`}
           >
             TESTED ({initialProjects.filter((p) => p.discipline === "TESTED BY ME").length})
           </button>
           <button
+            type="button"
             onClick={() => setActiveFilter("DEV")}
+            aria-pressed={activeFilter === "DEV"}
             className={`px-3 py-1.5 font-bold transition-colors cursor-pointer ${
               activeFilter === "DEV"
                 ? "bg-[#181818] text-[#C6F36B]"
-                : "text-[#181818] hover:text-[#FF5A36]"
+                : "text-[#181818] hover:text-[#C43616]"
             }`}
           >
             BUILT & TESTED ({initialProjects.filter((p) => p.discipline !== "TESTED BY ME").length})
@@ -94,7 +100,7 @@ export default function WorkArchiveClient({ initialProjects }: WorkArchiveClient
                 <span
                   className={`px-2 py-0.5 text-[10px] font-bold uppercase ${
                     proj.discipline === "TESTED BY ME"
-                      ? "bg-[#FF5A36] text-white"
+                      ? "bg-[#FF5A36] text-[#181818]"
                       : "bg-[#C6F36B] text-[#181818]"
                   }`}
                 >

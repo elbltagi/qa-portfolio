@@ -12,9 +12,23 @@ export default function Footer() {
   return (
     <footer className="bg-[#181818] text-[#F4F1EA] border-t-2 border-[#181818] pt-16 pb-12 font-sans relative overflow-hidden">
       {/* Background Architectural Accent */}
-      <div className="absolute right-0 bottom-0 text-[18vw] font-display font-black text-white/[0.02] select-none pointer-events-none leading-none">
-        YS
-      </div>
+      <svg
+        aria-hidden="true"
+        className="absolute right-0 bottom-0 w-[24vw] h-[16vw] max-w-[320px] select-none pointer-events-none text-white/[0.03]"
+        viewBox="0 0 120 90"
+        fill="currentColor"
+      >
+        <text
+          x="120"
+          y="80"
+          textAnchor="end"
+          fontSize="90"
+          fontWeight="900"
+          fontFamily="var(--font-display), sans-serif"
+        >
+          YS
+        </text>
+      </svg>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-16 border-b border-white/10">
@@ -46,7 +60,7 @@ export default function Footer() {
 
           {/* Site Navigation */}
           <div className="md:col-span-4 space-y-3">
-            <div className="font-mono text-xs uppercase tracking-wider text-white/50 pb-1">
+            <div className="font-mono text-xs uppercase tracking-wider text-white/70 pb-1">
               Architecture Index
             </div>
             <ul className="grid grid-cols-2 gap-2 font-mono text-xs text-[#9E9B95]">
@@ -64,7 +78,7 @@ export default function Footer() {
           {/* Socials & Return to Top */}
           <div className="md:col-span-3 space-y-4 flex flex-col justify-between">
             <div className="space-y-3">
-              <div className="font-mono text-xs uppercase tracking-wider text-white/50 pb-1">
+              <div className="font-mono text-xs uppercase tracking-wider text-white/70 pb-1">
                 Verified Channels
               </div>
               <div className="flex flex-col gap-2 font-mono text-xs">
@@ -98,7 +112,7 @@ export default function Footer() {
 
             <button
               onClick={scrollToTop}
-              className="inline-flex items-center justify-between px-4 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-[#F4F1EA] transition-colors group"
+              className="inline-flex items-center justify-between px-4 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-[#F4F1EA] transition-colors group cursor-pointer"
               aria-label="Scroll back to top of page"
             >
               <span>Back to Top</span>
@@ -109,7 +123,7 @@ export default function Footer() {
         </div>
 
         {/* Legal & Meta Ribbon */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-white/50">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-white/70">
           <p>© 2026 Youssef Salah Elbltagi. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <span className="text-[#C6F36B]">Standard: DEPI QA Trainee</span>

@@ -101,19 +101,19 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
             {/* Overview & Challenge / Solution */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2 bg-white p-5 border border-[#D5D0C8]">
-                <h3 className="font-mono text-xs uppercase font-bold text-[#FF5A36] flex items-center gap-2">
-                  <AlertTriangle className="w-4 h-4" /> The Challenge
+                <h3 className="font-mono text-xs uppercase font-bold text-[#C43616] flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4 text-[#C43616]" /> The Challenge
                 </h3>
                 <p className="text-sm text-[#181818] leading-relaxed">
                   {project.challenge}
                 </p>
               </div>
 
-              <div className="space-y-2 bg-white p-5 border border-[#D5D0C8]">
-                <h3 className="font-mono text-xs uppercase font-bold text-[#181818] flex items-center gap-2">
+              <div className="space-y-2 bg-[#181818] text-[#F4F1EA] p-5 border border-[#181818]">
+                <h3 className="font-mono text-xs uppercase font-bold text-[#C6F36B] flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-[#C6F36B]" /> The Solution & Strategy
                 </h3>
-                <p className="text-sm text-[#181818] leading-relaxed">
+                <p className="text-sm text-white/90 leading-relaxed font-sans">
                   {project.solution}
                 </p>
               </div>
@@ -128,7 +128,7 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
                 <ul className="space-y-2">
                   {project.responsibilities.map((r, i) => (
                     <li key={i} className="flex items-start gap-2.5 text-xs text-[#5A5752] leading-relaxed">
-                      <span className="font-mono text-[#FF5A36] font-bold">0{i + 1}.</span>
+                      <span className="font-mono text-[#C43616] font-bold">0{i + 1}.</span>
                       <span className="text-[#181818]">{r}</span>
                     </li>
                   ))}
@@ -142,7 +142,7 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
                 <div className="space-y-2">
                   {project.deliverables.map((del, i) => (
                     <div key={i} className="flex items-center gap-2 bg-[#E8E5DD] px-3 py-2 text-xs font-mono text-[#181818] border border-[#D5D0C8]">
-                      <CheckCircle className="w-3.5 h-3.5 text-[#FF5A36] shrink-0" />
+                      <CheckCircle className="w-3.5 h-3.5 text-[#C43616] shrink-0" />
                       <span>{del}</span>
                     </div>
                   ))}
@@ -154,7 +154,7 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
             {project.sampleTestCases && project.sampleTestCases.length > 0 && (
               <div className="space-y-3">
                 <h4 className="font-mono text-xs uppercase font-bold text-[#181818] tracking-wider flex items-center gap-2">
-                  <Terminal className="w-4 h-4 text-[#FF5A36]" /> Sample Executed Test Cases
+                  <Terminal className="w-4 h-4 text-[#C43616]" /> Sample Executed Test Cases
                 </h4>
                 <div className="overflow-x-auto border border-[#181818]">
                   <table className="w-full text-left font-mono text-xs bg-white">
@@ -169,7 +169,7 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
                     <tbody className="divide-y divide-[#D5D0C8]">
                       {project.sampleTestCases.map((tc) => (
                         <tr key={tc.id} className="hover:bg-[#F4F1EA]">
-                          <td className="py-2.5 px-3 font-bold text-[#FF5A36]">{tc.id}</td>
+                          <td className="py-2.5 px-3 font-bold text-[#C43616]">{tc.id}</td>
                           <td className="py-2.5 px-3 text-[#181818] font-sans">{tc.scenario}</td>
                           <td className="py-2.5 px-3 text-[#5A5752]">{tc.technique}</td>
                           <td className="py-2.5 px-3 text-right">
@@ -189,14 +189,14 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
             {project.sampleBugReport && (
               <div className="space-y-3">
                 <h4 className="font-mono text-xs uppercase font-bold text-[#181818] tracking-wider flex items-center gap-2">
-                  <Bug className="w-4 h-4 text-[#FF5A36]" /> Defect Ticket Reproduction
+                  <Bug className="w-4 h-4 text-[#C43616]" /> Defect Ticket Reproduction
                 </h4>
                 <div className="bg-[#181818] text-[#F4F1EA] p-5 border border-[#181818] space-y-4 font-mono text-xs">
                   <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
                     <span className="font-bold text-[#C6F36B]">
                       {project.sampleBugReport.id}: {project.sampleBugReport.title}
                     </span>
-                    <span className="px-2 py-0.5 text-[10px] font-bold uppercase bg-[#FF5A36] text-[#F4F1EA]">
+                    <span className="px-2 py-0.5 text-[10px] font-bold uppercase bg-[#FF5A36] text-[#181818]">
                       Severity: {project.sampleBugReport.severity}
                     </span>
                   </div>
@@ -241,7 +241,7 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
             </span>
             <button
               onClick={onClose}
-              className="px-6 py-2.5 font-mono text-xs font-bold uppercase bg-[#181818] text-[#F4F1EA] hover:bg-[#FF5A36] transition-colors"
+              className="px-6 py-2.5 font-mono text-xs font-bold uppercase bg-[#181818] text-[#F4F1EA] hover:bg-[#FF5A36] hover:text-[#181818] transition-colors"
             >
               Close Window
             </button>

@@ -75,13 +75,13 @@ export default function AboutPage() {
 
           {/* Header */}
           <div className="border-b-2 border-[#181818] pb-10 space-y-4">
-            <span className="font-mono text-xs uppercase tracking-widest text-[#FF5A36] font-bold">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#C43616] font-bold">
               [ PROFILE // BIOGRAPHY ]
             </span>
             <h1 className="font-display font-black text-editorial-title uppercase tracking-tight text-[#181818]">
               YOUSSEF SALAH ELBLTAGI
             </h1>
-            <p className="font-mono text-base sm:text-lg text-[#FF5A36] font-bold">
+            <p className="font-mono text-base sm:text-lg text-[#C43616] font-bold">
               Frontend Developer & Software QA Engineer
             </p>
           </div>
@@ -92,7 +92,7 @@ export default function AboutPage() {
             {/* Bio Column */}
             <div className="lg:col-span-8 space-y-6 text-[#5A5752] text-base sm:text-lg leading-relaxed">
               <p className="text-[#181818] font-medium text-lg sm:text-xl">
-                I am a Software Testing trainee at <strong className="text-[#FF5A36]">DEPI (Digital Egypt Pioneers Initiative)</strong> with a technical foundation in Frontend Development.
+                I am a Software Testing trainee at <strong className="text-[#C43616]">DEPI (Digital Egypt Pioneers Initiative)</strong> with a technical foundation in Frontend Development.
               </p>
 
               <p>
@@ -111,7 +111,7 @@ export default function AboutPage() {
               <div className="p-6 bg-white border-2 border-[#181818] shadow-[6px_6px_0px_0px_#181818] space-y-3 font-mono text-xs">
                 <div className="flex items-center justify-between border-b border-[#D5D0C8] pb-3">
                   <span className="text-[#181818] font-bold uppercase flex items-center gap-2">
-                    <GraduationCap className="w-4 h-4 text-[#FF5A36]" /> Formal Credential
+                    <GraduationCap className="w-4 h-4 text-[#C43616]" /> Formal Credential
                   </span>
                   <span className="bg-[#C6F36B] text-[#181818] px-2 py-0.5 font-bold uppercase text-[10px]">
                     Active Trainee
@@ -181,7 +181,7 @@ export default function AboutPage() {
                   className="bg-white p-6 sm:p-8 border-2 border-[#181818] shadow-[6px_6px_0px_0px_#181818] space-y-4 font-mono text-xs"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#D5D0C8] pb-3">
-                    <span className="text-[#FF5A36] font-bold uppercase tracking-wider text-[11px]">
+                    <span className="text-[#C43616] font-bold uppercase tracking-wider text-[11px]">
                       {m.period}
                     </span>
                     <span className="text-[#5A5752]">Milestone 0{idx + 1}</span>

@@ -26,7 +26,7 @@ export default function SelectedProjects() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b-2 border-[#181818] pb-8 mb-16">
           <div className="space-y-3">
-            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#FF5A36]">
+            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#C43616]">
               <span>[ SECTION 03 ]</span>
               <span>—</span>
               <span>SELECTED PROJECTS</span>
@@ -40,33 +40,39 @@ export default function SelectedProjects() {
           </div>
 
           {/* Filter Pills */}
-          <div className="flex items-center gap-1.5 p-1 bg-[#E8E5DD] border border-[#D5D0C8] font-mono text-xs self-start md:self-auto">
+          <div role="group" aria-label="Filter case studies by discipline" className="flex items-center gap-1.5 p-1 bg-[#E8E5DD] border border-[#D5D0C8] font-mono text-xs self-start md:self-auto">
             <button
+              type="button"
               onClick={() => setFilter("ALL")}
-              className={`px-3.5 py-1.5 font-bold transition-colors ${
+              aria-pressed={filter === "ALL"}
+              className={`px-3.5 py-1.5 font-bold transition-colors cursor-pointer ${
                 filter === "ALL"
                   ? "bg-[#181818] text-[#F4F1EA]"
-                  : "text-[#181818] hover:text-[#FF5A36]"
+                  : "text-[#181818] hover:text-[#C43616]"
               }`}
             >
               ALL [04]
             </button>
             <button
+              type="button"
               onClick={() => setFilter("QA")}
-              className={`px-3.5 py-1.5 font-bold transition-colors ${
+              aria-pressed={filter === "QA"}
+              className={`px-3.5 py-1.5 font-bold transition-colors cursor-pointer ${
                 filter === "QA"
-                  ? "bg-[#FF5A36] text-[#F4F1EA]"
-                  : "text-[#181818] hover:text-[#FF5A36]"
+                  ? "bg-[#FF5A36] text-[#181818]"
+                  : "text-[#181818] hover:text-[#C43616]"
               }`}
             >
               TESTED BY ME [03]
             </button>
             <button
+              type="button"
               onClick={() => setFilter("DEV")}
-              className={`px-3.5 py-1.5 font-bold transition-colors ${
+              aria-pressed={filter === "DEV"}
+              className={`px-3.5 py-1.5 font-bold transition-colors cursor-pointer ${
                 filter === "DEV"
                   ? "bg-[#181818] text-[#C6F36B]"
-                  : "text-[#181818] hover:text-[#FF5A36]"
+                  : "text-[#181818] hover:text-[#C43616]"
               }`}
             >
               BUILT & TESTED [01]
@@ -157,8 +163,9 @@ export default function SelectedProjects() {
 
                       <div className="flex flex-wrap items-center gap-3 pt-2">
                         <button
+                          type="button"
                           onClick={() => setSelectedProject(project)}
-                          className="px-6 py-3 bg-[#FF5A36] text-[#F4F1EA] hover:bg-[#181818] font-mono text-xs font-bold uppercase tracking-wider transition-colors flex items-center gap-2 group"
+                          className="px-6 py-3 bg-[#FF5A36] text-[#181818] hover:bg-[#181818] hover:text-[#F4F1EA] font-mono text-xs font-bold uppercase tracking-wider transition-colors flex items-center gap-2 group cursor-pointer"
                         >
                           <span>Inspect Full Case Study</span>
                           <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -184,7 +191,7 @@ export default function SelectedProjects() {
                     <div className="space-y-4">
                       <div className="flex items-center justify-between border-b border-[#D5D0C8] pb-2 font-mono text-xs font-bold text-[#181818] uppercase tracking-wider">
                         <span>Verified Deliverables</span>
-                        <span className="text-[#FF5A36]">Impact Metrics</span>
+                        <span className="text-[#C43616]">Impact Metrics</span>
                       </div>
 
                       {/* Metrics 2x2 Grid */}
@@ -212,7 +219,7 @@ export default function SelectedProjects() {
                         <ul className="space-y-1.5 font-mono text-xs text-[#5A5752]">
                           {project.deliverables.map((del, dIdx) => (
                             <li key={dIdx} className="flex items-start gap-2">
-                              <span className="text-[#FF5A36] font-bold">›</span>
+                              <span className="text-[#C43616] font-bold">›</span>
                               <span className="text-[#181818]">{del}</span>
                             </li>
                           ))}

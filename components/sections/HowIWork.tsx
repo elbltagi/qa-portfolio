@@ -77,7 +77,7 @@ export default function HowIWork() {
 
               {/* Output Deliverable */}
               <div className="pt-6 mt-6 border-t border-white/10 space-y-1">
-                <span className="font-mono text-[10px] uppercase text-white/50 tracking-wider block">
+                <span className="font-mono text-[10px] uppercase text-white/70 tracking-wider block">
                   Phase Deliverable:
                 </span>
                 <span className="font-mono text-xs text-white font-bold block">

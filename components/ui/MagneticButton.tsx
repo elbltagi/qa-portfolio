@@ -28,24 +28,40 @@ export default function MagneticButton({
   disabled = false,
 }: MagneticButtonProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const rectRef = useRef<{ left: number; top: number; width: number; height: number } | null>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseEnter = () => {
+    if (!ref.current || disabled) return;
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+    rectRef.current = ref.current.getBoundingClientRect();
+  };
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!ref.current || disabled) return;
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+    if (!rectRef.current) {
+      rectRef.current = ref.current.getBoundingClientRect();
+    }
     const { clientX, clientY } = e;
-    const { left, top, width, height } = ref.current.getBoundingClientRect();
+    const { left, top, width, height } = rectRef.current;
     const x = (clientX - (left + width / 2)) * 0.25;
     const y = (clientY - (top + height / 2)) * 0.25;
     setPosition({ x, y });
   };
 
   const handleMouseLeave = () => {
+    rectRef.current = null;
     setPosition({ x: 0, y: 0 });
   };
 
   const variantStyles = {
     primary:
-      "bg-[#FF5A36] text-[#F4F1EA] hover:bg-[#E04925] border border-[#FF5A36] shadow-sm",
+      "bg-[#FF5A36] text-[#181818] hover:bg-[#E04925] border border-[#FF5A36] shadow-sm font-bold",
     secondary:
       "bg-[#C6F36B] text-[#181818] hover:bg-[#B3E552] border border-[#C6F36B] font-semibold",
     dark:
@@ -63,6 +79,7 @@ export default function MagneticButton({
   const content = (
     <span
       ref={ref}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className="inline-block"

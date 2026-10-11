@@ -69,7 +69,7 @@ export default function ServicesPage() {
 
           {/* Header */}
           <div className="border-b-2 border-[#181818] pb-10 space-y-4">
-            <span className="font-mono text-xs uppercase tracking-widest text-[#FF5A36] font-bold">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#C43616] font-bold">
               [ SERVICES & PACKAGES ]
             </span>
             <h1 className="font-display font-black text-editorial-title uppercase tracking-tight text-[#181818]">
@@ -88,7 +88,7 @@ export default function ServicesPage() {
                 className="bg-white border-2 border-[#181818] shadow-[8px_8px_0px_0px_#181818] p-6 sm:p-10 space-y-6"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#D5D0C8] pb-4">
-                  <span className="font-display font-black text-3xl sm:text-4xl text-[#FF5A36]">
+                  <span className="font-display font-black text-3xl sm:text-4xl text-[#C43616]">
                     {svc.number}
                   </span>
                   <span className="font-mono text-xs text-[#5A5752] uppercase tracking-wider">
@@ -113,7 +113,7 @@ export default function ServicesPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     {svc.deliverables.map((del, i) => (
                       <div key={i} className="flex items-start gap-2 text-xs sm:text-sm text-[#181818] font-mono">
-                        <CheckCircle2 className="w-4 h-4 text-[#FF5A36] shrink-0 mt-0.5" />
+                        <CheckCircle2 className="w-4 h-4 text-[#C43616] shrink-0 mt-0.5" />
                         <span>{del}</span>
                       </div>
                     ))}
@@ -132,7 +132,7 @@ export default function ServicesPage() {
 
                   <a
                     href="/contact"
-                    className="px-5 py-2.5 bg-[#181818] text-white hover:bg-[#FF5A36] font-bold uppercase transition-colors flex items-center gap-1.5"
+                    className="px-5 py-2.5 bg-[#181818] text-white hover:bg-[#FF5A36] hover:text-[#181818] font-bold uppercase transition-colors flex items-center gap-1.5"
                   >
                     <span>Request Proposal</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />

@@ -42,7 +42,7 @@ export default function Services() {
               className="group bg-[#18191E] border border-white/10 hover:border-[#FF5A36] p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 relative overflow-hidden"
             >
               {/* Massive Editorial Number Watermark */}
-              <div className="absolute top-4 right-6 font-display font-black text-6xl text-white/[0.04] group-hover:text-[#FF5A36]/10 transition-colors select-none pointer-events-none">
+              <div aria-hidden="true" className="absolute top-4 right-6 font-display font-black text-6xl text-white/[0.04] group-hover:text-[#FF5A36]/10 transition-colors select-none pointer-events-none">
                 {service.number}
               </div>
 
@@ -101,7 +101,7 @@ export default function Services() {
 
                 <a
                   href="#contact"
-                  className="w-9 h-9 rounded-full border border-white/20 group-hover:border-[#FF5A36] group-hover:bg-[#FF5A36] group-hover:text-[#F4F1EA] flex items-center justify-center text-white transition-all duration-200"
+                  className="w-9 h-9 rounded-full border border-white/20 group-hover:border-[#FF5A36] group-hover:bg-[#FF5A36] group-hover:text-[#181818] flex items-center justify-center text-white transition-all duration-200"
                   aria-label={`Inquire about ${service.title}`}
                 >
                   <ArrowUpRight className="w-4 h-4" />

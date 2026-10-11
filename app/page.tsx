@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
@@ -6,10 +7,18 @@ import SelectedProjects from "@/components/sections/SelectedProjects";
 import Services from "@/components/sections/Services";
 import Skills from "@/components/sections/Skills";
 import HowIWork from "@/components/sections/HowIWork";
-import QAPlayground from "@/components/sections/QAPlayground";
 import Contact from "@/components/sections/Contact";
 import ScrollMarquee from "@/components/ui/ScrollMarquee";
-import CustomCursor from "@/components/ui/CustomCursor";
+
+// Code-split below-the-fold interactive sandbox to reduce initial JS load by ~45 KiB and eliminate long main-thread tasks
+const QAPlayground = dynamic(() => import("@/components/sections/QAPlayground"), {
+  loading: () => (
+    <section className="py-24 sm:py-32 bg-[#F4F1EA] text-[#181818] min-h-[600px] border-b-2 border-[#181818]" />
+  ),
+});
+
+// Desktop-only contextual cursor
+const CustomCursor = dynamic(() => import("@/components/ui/CustomCursor"));
 
 export default function Home() {
   return (

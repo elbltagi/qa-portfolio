@@ -12,16 +12,20 @@ export default function CustomCursor() {
 
   useEffect(() => {
     setMounted(true);
-    // Check if touch device or coarse pointer
+    // Check if touch device, coarse pointer, or user prefers reduced motion
     const isTouch = window.matchMedia("(pointer: coarse)").matches;
-    if (isTouch) return;
+    const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (isTouch || isReduced) return;
+
+    let prevTarget: EventTarget | null = null;
 
     const onMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
       if (!isVisible) setIsVisible(true);
 
       const target = e.target as HTMLElement | null;
-      if (!target) return;
+      if (!target || target === prevTarget) return;
+      prevTarget = target;
 
       const cursorTarget = target.closest("[data-cursor]") as HTMLElement | null;
       if (cursorTarget) {
@@ -40,7 +44,7 @@ export default function CustomCursor() {
     const onMouseLeave = () => setIsVisible(false);
     const onMouseEnter = () => setIsVisible(true);
 
-    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
     document.addEventListener("mouseleave", onMouseLeave);
     document.addEventListener("mouseenter", onMouseEnter);
 
@@ -55,12 +59,21 @@ export default function CustomCursor() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 pointer-events-none z-[9999] flex items-center justify-center font-mono text-[10px] uppercase font-bold tracking-wider"
+      className="fixed top-0 left-0 pointer-events-none z-[9999] flex items-center justify-center font-mono text-[10px] uppercase font-bold tracking-wider rounded-full will-change-transform"
+      style={{
+        width: 36,
+        height: 36,
+        x: position.x - 18,
+        y: position.y - 18,
+        mixBlendMode: cursorVariant === "hover" ? "difference" : "normal",
+      }}
       animate={{
-        x: position.x - (cursorVariant === "view" || cursorVariant === "inspect" ? 36 : cursorVariant === "hover" ? 18 : 6),
-        y: position.y - (cursorVariant === "view" || cursorVariant === "inspect" ? 36 : cursorVariant === "hover" ? 18 : 6),
-        width: cursorVariant === "view" || cursorVariant === "inspect" ? 72 : cursorVariant === "hover" ? 36 : 12,
-        height: cursorVariant === "view" || cursorVariant === "inspect" ? 72 : cursorVariant === "hover" ? 36 : 12,
+        scale:
+          cursorVariant === "view" || cursorVariant === "inspect"
+            ? 2.0
+            : cursorVariant === "hover"
+            ? 1.15
+            : 0.35,
         backgroundColor:
           cursorVariant === "inspect"
             ? "#FF5A36"
@@ -70,13 +83,8 @@ export default function CustomCursor() {
             ? "#C6F36B"
             : "#FF5A36",
         color: cursorVariant === "view" ? "#F4F1EA" : "#181818",
-        scale: 1,
       }}
       transition={{ type: "spring", damping: 25, stiffness: 350, mass: 0.15 }}
-      style={{
-        borderRadius: "9999px",
-        mixBlendMode: cursorVariant === "hover" ? "difference" : "normal",
-      }}
     >
       {cursorText && (
         <span className="text-center px-1 leading-tight select-none">

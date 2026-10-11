@@ -58,12 +58,12 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1 border border-[#D5D0C8] bg-[#E8E5DD]/70 px-3 py-1.5 rounded-full backdrop-blur-sm">
+          <nav aria-label="Main Navigation" className="hidden lg:flex items-center space-x-1 border border-[#D5D0C8] bg-[#E8E5DD]/70 px-3 py-1.5 rounded-full backdrop-blur-sm">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="px-3.5 py-1 text-xs font-mono font-medium text-[#181818] hover:text-[#FF5A36] rounded-full transition-colors"
+                className="px-3.5 py-1 text-xs font-mono font-medium text-[#181818] hover:text-[#C43616] rounded-full transition-colors"
               >
                 {link.name}
               </a>
@@ -79,7 +79,7 @@ export default function Navbar() {
 
             <a
               href="#contact"
-              className="group relative inline-flex items-center gap-1.5 px-5 py-2.5 bg-[#FF5A36] text-[#F4F1EA] hover:bg-[#181818] transition-colors rounded-full font-mono text-xs font-bold uppercase tracking-wider"
+              className="group relative inline-flex items-center gap-1.5 px-5 py-2.5 bg-[#FF5A36] text-[#181818] hover:bg-[#181818] hover:text-[#F4F1EA] transition-colors rounded-full font-mono text-xs font-bold uppercase tracking-wider"
             >
               <span>Let's Talk</span>
               <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -90,14 +90,16 @@ export default function Navbar() {
           <div className="flex lg:hidden items-center gap-2">
             <a
               href="#contact"
-              className="px-3.5 py-1.5 bg-[#FF5A36] text-[#F4F1EA] text-xs font-mono font-bold uppercase rounded-full"
+              className="px-3.5 py-1.5 bg-[#FF5A36] text-[#181818] text-xs font-mono font-bold uppercase rounded-full"
             >
               Talk
             </a>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 border border-[#181818] bg-[#181818] text-[#F4F1EA] hover:bg-[#FF5A36] transition-colors"
+              className="p-2 border border-[#181818] bg-[#181818] text-[#F4F1EA] hover:bg-[#FF5A36] hover:text-[#181818] transition-colors"
               aria-label="Toggle Navigation Menu"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-nav"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -109,6 +111,7 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
+            id="mobile-nav"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}

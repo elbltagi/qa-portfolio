@@ -163,13 +163,14 @@ export default function Contact() {
             <div className="bg-white text-[#181818] p-6 sm:p-10 border-2 border-[#181818] shadow-[12px_12px_0px_0px_#181818]">
               
               {/* Inquiry Branching Selector */}
-              <div className="flex items-center gap-2 border-b-2 border-[#181818] pb-6 mb-6 font-mono text-xs">
+              <div role="group" aria-label="Select your inquiry type" className="flex items-center gap-2 border-b-2 border-[#181818] pb-6 mb-6 font-mono text-xs">
                 <span className="text-[#5A5752] font-bold uppercase mr-2 hidden sm:inline">
                   I am a:
                 </span>
                 <button
                   type="button"
                   onClick={() => setRoleType("freelance")}
+                  aria-pressed={roleType === "freelance"}
                   className={`px-4 py-2 font-bold uppercase transition-all border-2 border-[#181818] ${
                     roleType === "freelance"
                       ? "bg-[#181818] text-[#F4F1EA]"
@@ -181,6 +182,7 @@ export default function Contact() {
                 <button
                   type="button"
                   onClick={() => setRoleType("recruiter")}
+                  aria-pressed={roleType === "recruiter"}
                   className={`px-4 py-2 font-bold uppercase transition-all border-2 border-[#181818] ${
                     roleType === "recruiter"
                       ? "bg-[#181818] text-[#F4F1EA]"
@@ -207,10 +209,12 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-5 font-mono text-xs">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="font-bold text-[#181818] uppercase block">
+                      <label htmlFor="contact-name" className="font-bold text-[#181818] uppercase block">
                         Your Name *
                       </label>
                       <input
+                        id="contact-name"
+                        name="name"
                         type="text"
                         required
                         value={formData.name}
@@ -221,10 +225,12 @@ export default function Contact() {
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="font-bold text-[#181818] uppercase block">
+                      <label htmlFor="contact-email" className="font-bold text-[#181818] uppercase block">
                         Email Address *
                       </label>
                       <input
+                        id="contact-email"
+                        name="email"
                         type="email"
                         required
                         value={formData.email}
@@ -236,10 +242,13 @@ export default function Contact() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="font-bold text-[#181818] uppercase block">
+                    <label htmlFor="contact-subject" className="font-bold text-[#181818] uppercase block">
                       Scope / Focus
                     </label>
                     <select
+                      id="contact-subject"
+                      name="subject"
+                      aria-label="Scope or focus of your project"
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                       className="w-full px-3.5 py-3 bg-[#F4F1EA] border-2 border-[#181818] focus:bg-white focus:outline-none transition-colors font-mono"
@@ -252,10 +261,12 @@ export default function Contact() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="font-bold text-[#181818] uppercase block">
+                    <label htmlFor="contact-message" className="font-bold text-[#181818] uppercase block">
                       Project Details & Timeline *
                     </label>
                     <textarea
+                      id="contact-message"
+                      name="message"
                       rows={5}
                       required
                       value={formData.message}
@@ -271,7 +282,7 @@ export default function Contact() {
 
                   <button
                     type="submit"
-                    className="w-full py-4 bg-[#181818] text-[#F4F1EA] hover:bg-[#FF5A36] hover:text-white font-mono text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 group cursor-pointer"
+                    className="w-full py-4 bg-[#181818] text-[#F4F1EA] hover:bg-[#FF5A36] hover:text-[#181818] font-mono text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 group cursor-pointer"
                   >
                     <span>Send Message to Youssef</span>
                     <Send className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />

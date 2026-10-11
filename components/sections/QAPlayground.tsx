@@ -64,7 +64,7 @@ export default function QAPlayground() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b-2 border-[#181818] pb-8 mb-16">
           <div className="space-y-3">
-            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#FF5A36]">
+            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#C43616]">
               <span>[ SECTION 07 ]</span>
               <span>—</span>
               <span>SIGNATURE QA FEATURE</span>
@@ -81,9 +81,10 @@ export default function QAPlayground() {
           <div className="flex items-center gap-3 self-start md:self-auto">
             <button
               onClick={() => setRevealBugs(!revealBugs)}
+              aria-pressed={revealBugs}
               className={`px-4 py-2 font-mono text-xs font-bold uppercase border-2 flex items-center gap-2 transition-all ${
                 revealBugs
-                  ? "bg-[#FF5A36] text-[#F4F1EA] border-[#181818] shadow-[4px_4px_0px_0px_#181818]"
+                  ? "bg-[#FF5A36] text-[#181818] border-[#181818] shadow-[4px_4px_0px_0px_#181818]"
                   : "bg-white text-[#181818] border-[#181818] hover:bg-[#E8E5DD]"
               }`}
             >
@@ -116,34 +117,46 @@ export default function QAPlayground() {
               </span>
             </div>
 
-            {/* View Switcher */}
-            <div className="flex items-center bg-[#24252B] p-1 border border-white/10 font-mono text-xs">
+            {/* View Switcher Tabs */}
+            <div role="tablist" aria-label="Sandbox view modes" className="flex items-center bg-[#24252B] p-1 border border-white/10 font-mono text-xs">
               <button
+                role="tab"
+                id="tab-sandbox"
+                aria-controls="panel-sandbox"
+                aria-selected={activeTab === "sandbox"}
                 onClick={() => setActiveTab("sandbox")}
                 className={`px-3 py-1 font-bold transition-colors ${
                   activeTab === "sandbox"
-                    ? "bg-[#FF5A36] text-[#F4F1EA]"
-                    : "text-white/60 hover:text-white"
+                    ? "bg-[#FF5A36] text-[#181818]"
+                    : "text-white/80 hover:text-white"
                 }`}
               >
                 Interactive UI
               </button>
               <button
+                role="tab"
+                id="tab-ticket"
+                aria-controls="panel-ticket"
+                aria-selected={activeTab === "ticket"}
                 onClick={() => setActiveTab("ticket")}
                 className={`px-3 py-1 font-bold transition-colors ${
                   activeTab === "ticket"
-                    ? "bg-[#FF5A36] text-[#F4F1EA]"
-                    : "text-white/60 hover:text-white"
+                    ? "bg-[#FF5A36] text-[#181818]"
+                    : "text-white/80 hover:text-white"
                 }`}
               >
                 Defect Report
               </button>
               <button
+                role="tab"
+                id="tab-matrix"
+                aria-controls="panel-matrix"
+                aria-selected={activeTab === "matrix"}
                 onClick={() => setActiveTab("matrix")}
                 className={`px-3 py-1 font-bold transition-colors ${
                   activeTab === "matrix"
-                    ? "bg-[#FF5A36] text-[#F4F1EA]"
-                    : "text-white/60 hover:text-white"
+                    ? "bg-[#FF5A36] text-[#181818]"
+                    : "text-white/80 hover:text-white"
                 }`}
               >
                 EP & BVA Matrix
@@ -154,7 +167,12 @@ export default function QAPlayground() {
           {/* Sandbox Body */}
           <div className="p-6 sm:p-10 font-sans">
             {activeTab === "sandbox" && (
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              <div
+                role="tabpanel"
+                id="panel-sandbox"
+                aria-labelledby="tab-sandbox"
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
+              >
                 
                 {/* Left Form: Simulated Cart UI */}
                 <div className="lg:col-span-7 space-y-6 bg-[#F4F1EA] p-6 border-2 border-[#181818]">
@@ -180,18 +198,27 @@ export default function QAPlayground() {
                     <div className="relative">
                       <div className="flex items-center border border-[#181818]">
                         <button
+                          type="button"
+                          aria-label="Decrease quantity"
                           onClick={() => setQuantity((q) => Math.max(1, q - 1))}
                           className="px-3 py-1 bg-[#E8E5DD] hover:bg-[#181818] hover:text-white font-mono text-sm font-bold transition-colors"
                         >
                           -
                         </button>
                         <input
+                          id="qa-cart-quantity"
+                          name="cartQuantity"
+                          aria-label="Cart item quantity"
                           type="number"
+                          min="1"
+                          max="99"
                           value={quantity}
                           onChange={(e) => setQuantity(Number(e.target.value))}
                           className="w-14 text-center font-mono text-sm font-bold py-1 bg-white focus:outline-none"
                         />
                         <button
+                          type="button"
+                          aria-label="Increase quantity"
                           onClick={() => setQuantity((q) => q + 1)}
                           className="px-3 py-1 bg-[#E8E5DD] hover:bg-[#181818] hover:text-white font-mono text-sm font-bold transition-colors"
                         >
@@ -200,7 +227,7 @@ export default function QAPlayground() {
                       </div>
 
                       {revealBugs && quantity > 99 && (
-                        <div className="absolute top-full left-0 right-0 mt-1 p-1 bg-red-100 border border-red-500 font-mono text-[10px] text-red-600 font-bold z-10">
+                        <div className="absolute top-full left-0 right-0 mt-1 p-1 bg-red-50 border border-red-500 font-mono text-[10px] text-red-700 font-bold z-10">
                           BUG: Boundary cap failed (Max 99 allowed)
                         </div>
                       )}
@@ -209,11 +236,13 @@ export default function QAPlayground() {
 
                   {/* Promo Input */}
                   <div className="space-y-1.5 relative">
-                    <label className="font-mono text-xs font-bold text-[#181818] uppercase">
+                    <label htmlFor="qa-promo-code" className="font-mono text-xs font-bold text-[#181818] uppercase">
                       Promo Code (Try: SAVE20)
                     </label>
                     <div className="flex gap-2">
                       <input
+                        id="qa-promo-code"
+                        name="promoCode"
                         type="text"
                         value={promoCode}
                         onChange={(e) => setPromoCode(e.target.value)}
@@ -221,15 +250,16 @@ export default function QAPlayground() {
                         className="flex-1 px-3 py-2 bg-white border border-[#181818] font-mono text-xs uppercase focus:outline-none"
                       />
                       <button
+                        type="button"
                         onClick={handleApplyPromo}
-                        className="px-4 py-2 bg-[#181818] text-[#F4F1EA] hover:bg-[#FF5A36] font-mono text-xs font-bold uppercase transition-colors"
+                        className="px-4 py-2 bg-[#181818] text-[#F4F1EA] hover:bg-[#FF5A36] hover:text-[#181818] font-mono text-xs font-bold uppercase transition-colors"
                       >
                         Apply Code
                       </button>
                     </div>
 
                     {appliedPromo && (
-                      <div className="font-mono text-xs text-emerald-700 flex items-center gap-1.5 pt-1">
+                      <div className="font-mono text-xs text-emerald-800 flex items-center gap-1.5 pt-1 font-semibold">
                         <Check className="w-3.5 h-3.5" />
                         <span>Code 'SAVE20' applied (20% Off)</span>
                       </div>
@@ -244,7 +274,7 @@ export default function QAPlayground() {
                     </div>
 
                     {appliedPromo && (
-                      <div className="flex justify-between text-[#FF5A36]">
+                      <div className="flex justify-between text-[#C43616]">
                         <span>Promo Discount:</span>
                         <span className="font-bold">-${discountAmount}.00</span>
                       </div>
@@ -256,7 +286,7 @@ export default function QAPlayground() {
                     </div>
 
                     {revealBugs && appliedPromo && quantity > 1 && !revealBugs && (
-                      <div className="p-2 bg-red-50 border border-red-400 font-mono text-[11px] text-red-600 mt-2">
+                      <div className="p-2 bg-red-50 border border-red-400 font-mono text-[11px] text-red-700 mt-2">
                         DEFECT: Discount remains flat $20.00 instead of 20% of ${subtotal} (${subtotal * 0.20}).
                       </div>
                     )}
@@ -265,8 +295,9 @@ export default function QAPlayground() {
                   {/* Order Submission Button */}
                   <div className="space-y-2 relative">
                     <button
+                      type="button"
                       onClick={handleFastOrderClick}
-                      className="w-full py-3.5 bg-[#FF5A36] text-[#F4F1EA] hover:bg-[#181818] font-mono text-xs font-bold uppercase tracking-wider transition-colors"
+                      className="w-full py-3.5 bg-[#FF5A36] text-[#181818] hover:bg-[#181818] hover:text-[#F4F1EA] font-mono text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
                     >
                       Click to Place Order
                     </button>
@@ -365,7 +396,12 @@ export default function QAPlayground() {
 
             {/* Tab 2: Defect Ticket View */}
             {activeTab === "ticket" && (
-              <div className="space-y-4 max-w-4xl mx-auto font-mono text-xs">
+              <div
+                role="tabpanel"
+                id="panel-ticket"
+                aria-labelledby="tab-ticket"
+                className="space-y-4 max-w-4xl mx-auto font-mono text-xs"
+              >
                 <div className="bg-[#181818] text-[#F4F1EA] p-6 border-2 border-[#181818] space-y-4">
                   <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4">
                     <div>
@@ -374,7 +410,7 @@ export default function QAPlayground() {
                       </span>
                       <span className="text-[#9E9B95] text-[11px]">Reported by: Youssef Salah Elbltagi</span>
                     </div>
-                    <span className="px-2.5 py-1 text-xs font-bold uppercase bg-[#FF5A36] text-[#F4F1EA]">
+                    <span className="px-2.5 py-1 text-xs font-bold uppercase bg-[#FF5A36] text-[#181818]">
                       Severity: High / Priority: P1
                     </span>
                   </div>
@@ -419,13 +455,18 @@ export default function QAPlayground() {
 
             {/* Tab 3: Coverage Matrix */}
             {activeTab === "matrix" && (
-              <div className="space-y-4 max-w-4xl mx-auto font-mono text-xs">
+              <div
+                role="tabpanel"
+                id="panel-matrix"
+                aria-labelledby="tab-matrix"
+                className="space-y-4 max-w-4xl mx-auto font-mono text-xs"
+              >
                 <div className="bg-white border-2 border-[#181818] p-6 space-y-4">
                   <div className="flex items-center justify-between border-b border-[#D5D0C8] pb-3">
                     <h4 className="font-display font-bold text-lg text-[#181818]">
                       Equivalence Partitioning & Boundary Value Analysis Matrix
                     </h4>
-                    <span className="text-[#FF5A36] font-bold">100% Coverage</span>
+                    <span className="text-[#C43616] font-bold">100% Coverage</span>
                   </div>
 
                   <div className="overflow-x-auto">
@@ -441,32 +482,32 @@ export default function QAPlayground() {
                       </thead>
                       <tbody className="divide-y divide-[#D5D0C8]">
                         <tr className="hover:bg-[#F4F1EA]">
-                          <td className="py-2.5 px-3 font-bold text-[#FF5A36]">TC-BVA-01</td>
+                          <td className="py-2.5 px-3 font-bold text-[#C43616]">TC-BVA-01</td>
                           <td className="py-2.5 px-3">Quantity = 1 (Min boundary)</td>
                           <td className="py-2.5 px-3">Boundary Value</td>
                           <td className="py-2.5 px-3">Valid order, subtotal $100</td>
-                          <td className="py-2.5 px-3 text-right font-bold text-emerald-600">PASS</td>
+                          <td className="py-2.5 px-3 text-right font-bold text-emerald-700">PASS</td>
                         </tr>
                         <tr className="hover:bg-[#F4F1EA]">
-                          <td className="py-2.5 px-3 font-bold text-[#FF5A36]">TC-BVA-02</td>
+                          <td className="py-2.5 px-3 font-bold text-[#C43616]">TC-BVA-02</td>
                           <td className="py-2.5 px-3">Quantity = 99 (Max boundary)</td>
                           <td className="py-2.5 px-3">Boundary Value</td>
                           <td className="py-2.5 px-3">Valid order, subtotal $9,900</td>
-                          <td className="py-2.5 px-3 text-right font-bold text-emerald-600">PASS</td>
+                          <td className="py-2.5 px-3 text-right font-bold text-emerald-700">PASS</td>
                         </tr>
                         <tr className="hover:bg-[#F4F1EA]">
-                          <td className="py-2.5 px-3 font-bold text-[#FF5A36]">TC-BVA-03</td>
+                          <td className="py-2.5 px-3 font-bold text-[#C43616]">TC-BVA-03</td>
                           <td className="py-2.5 px-3">Quantity = 100 (Out of bounds)</td>
                           <td className="py-2.5 px-3">Boundary Value</td>
                           <td className="py-2.5 px-3">Blocked with user inline warning</td>
-                          <td className="py-2.5 px-3 text-right font-bold text-red-600">FAIL</td>
+                          <td className="py-2.5 px-3 text-right font-bold text-red-700">FAIL</td>
                         </tr>
                         <tr className="hover:bg-[#F4F1EA]">
-                          <td className="py-2.5 px-3 font-bold text-[#FF5A36]">TC-EP-01</td>
+                          <td className="py-2.5 px-3 font-bold text-[#C43616]">TC-EP-01</td>
                           <td className="py-2.5 px-3">Promo = 'SAVE20' (Valid class)</td>
                           <td className="py-2.5 px-3">Equivalence Class</td>
                           <td className="py-2.5 px-3">Apply 20% discount on entire subtotal</td>
-                          <td className="py-2.5 px-3 text-right font-bold text-red-600">FAIL</td>
+                          <td className="py-2.5 px-3 text-right font-bold text-red-700">FAIL</td>
                         </tr>
                       </tbody>
                     </table>
